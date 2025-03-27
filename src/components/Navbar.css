@@ -1,0 +1,166 @@
+/* Navbar Container */
+.navbar {
+  position: sticky;
+    background-color: #1a237e;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top:0;
+    width: 100%;
+    z-index: 1000;
+  }
+.navbar-logged{
+    background-color: #4855e0 ;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+  
+  .navbar-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Logo Styling */
+  .navbar-logo img {
+    max-height: 60px;
+    width: auto;
+  }
+  
+  /* Toggler Button for Mobile */
+  .navbar-toggler {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Navbar Menu */
+  .navbar-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding-left: 1em;
+  }
+  
+  .navbar-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+
+  }
+  
+  .navbar-links li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Navbar Buttons */
+  .navbar-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .navbar-buttons .btn {
+    background-color: #3949ab;
+    color: white;
+    border: 2px solid #3949ab;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar-buttons .btn:hover {
+    background-color: #283593;
+  }
+
+  /* Navbar Buttons */
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Place Login & Signup in One Line */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Buttons */
+.navbar-buttons .btn, .auth-buttons .btn {
+  background-color: #3949ab;
+  color: white;
+  border: 2px solid #3949ab;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-buttons .btn:hover, .auth-buttons .btn:hover {
+  background-color: #283593;
+}
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-toggler {
+      display: block;
+    }
+  
+    .navbar-menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #1a237e;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      padding: 10px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .navbar-menu.active {
+      display: flex;
+    }
+  
+    .navbar-links {
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+  
+    .navbar-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+    /* Keep Login and Signup in One Line on Mobile */
+  .auth-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .navbar-buttons .btn, .auth-buttons .btn {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}

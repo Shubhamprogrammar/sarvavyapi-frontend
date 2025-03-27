@@ -1,0 +1,264 @@
+/* Navbar */
+.custom-navbar {
+  background-color: #700B97; /* Set navbar background */
+}
+.nav-link {
+  font-size: 1.2rem; /* Make the font size larger */
+  color: white !important; /* Ensure links are white */
+}
+
+/* Fields */
+.container {
+  padding: 20px;
+}
+
+.form-select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #283593; /* Darker shade for hover effect */
+}
+
+/* Style for the images inside the marquee */
+.company-logo {
+  width: 100px; /* Fixed width */
+  height: 100px; /* Fixed height */
+  margin: 0 15px; /* Spacing between logos */
+  object-fit: contain; /* Ensures the logos maintain their aspect ratio */
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allow cards to wrap to the next row on smaller screens */
+  gap: 20px; /* Add space between cards */
+  margin-top: 20px;
+}
+
+.card {
+  width: 18rem;
+  flex: 1 1 calc(25% - 20px); /* Allow the cards to grow and shrink, with a gap */
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/* Companies */
+.marquee {
+  display: flex;
+  animation: marquee-animation 20s linear infinite;
+}
+
+@keyframes marquee-animation {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.overflow-hidden {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.company-logo {
+  height: 80px; /* Adjust as needed */
+  width: auto;
+}
+
+.position-relative {
+  position: relative;
+}
+
+/* LoggedUser */
+.user-profile-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.user-profile-card {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  max-width: 300px;
+}
+
+.user-profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* AddProperties.js */
+/* Container style */
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  background-color: #f9f9f9;  /* Light background for the form */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Soft shadow for a lifted effect */
+  border-radius: 10px;  /* Rounded corners */
+}
+
+/* Form inputs */
+input.form-control, textarea.form-control, select.form-select {
+  border-radius: 5px;  /* Slightly rounded inputs */
+}
+
+/* Submit button */
+button.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 12px;
+  font-weight: bold;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+/* Optional: Add slight transition effect for buttons */
+button {
+  transition: all 0.3s ease;
+}
+
+/* whatsapp Button */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.whatsapp-button img {
+  width: 35px;
+  height: 35px;
+}
+
+
+/* Profile.js */
+.user-profile-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 80px; /* Adjust based on your navbar height */
+  background-color: #f4f4f4;
+}
+
+.user-profile-card {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-button-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.edit-icon {
+  font-size: 22px;
+  transition: color 0.3s;
+}
+
+.edit-icon:hover {
+  color: #0056b3;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.detail-value {
+  text-align: right;
+  color: #333;
+}
+
+
+/* Residential */
+.property-card {
+  max-width: 18rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.property-card img {
+  height: 12rem;
+  object-fit: cover;
+}
+
+.property-card .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
