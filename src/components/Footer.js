@@ -1,21 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaEnvelope, FaPhone } from 'react-icons/fa';
 
 export default function Footer() {
     return (
-        <footer className="bg-dark text-white py-4">
+        <footer className="bg-dark text-white py-3">
             <div className="container">
-                <div className="row">
+                
+                
+                <div className="row mt-1">
                     {/* Company Info */}
-                    <div className="col-md-4 mb-3">
+                    <div className="col-md-4 mb-4">
                         <h5>Sarvavyapi - The Real Estate</h5>
                         <p>
                             Your trusted partner for finding the best real estate deals. We bring you premium properties tailored to your needs.
                         </p>
                     </div>
+                    
 
                     {/* Quick Links */}
-                    <div className="col-md-4 mb-3">
+                    <div className="col-md-4">
                         <h5>Quick Links</h5>
                         <ul className="list-unstyled">
                             <li><Link to="/about" className="text-white text-decoration-none">About Us</Link></li>
@@ -27,21 +31,33 @@ export default function Footer() {
                     </div>
 
                     {/* Contact Information */}
-                    <div className="col-md-4 mb-3">
+                    <div className="col-md-4">
                         <h5>Contact Us</h5>
                         <p>
-                            <strong>Phone:</strong> +91 88500 93749<br />
-                            <strong>Email:</strong> mauryashubham@sarvavyapi.com
+                            <FaPhone />  +91 88500 93749<br />
+                            <FaEnvelope /> mauryashubham@sarvavyapi.com
                         </p>
                         <p>
-                            <strong>Address:</strong> <br />
-
-                            <p>
-                                Sarvavyapi - The Real Estate, <br />
-                                123 Real Estate Avenue, <br />
-                                Navi Mumbai, Maharashtra, 400701
-                            </p>
+                            <strong>Address:</strong><br />
+                            Sarvavyapi - The Real Estate, <br />
+                            123 Real Estate Avenue, <br />
+                            Navi Mumbai, Maharashtra, 400701
                         </p>
+                    </div>
+                </div>
+                {/* Follow Us */}
+                <div className="text-center">
+                    <h4>Follow Us</h4>
+                    <div className="d-flex justify-content-center gap-3">
+                        <a href="https://facebook.com" className="text-white" target="_blank" rel="noopener noreferrer">
+                            <FaFacebookF size={30} />
+                        </a>
+                        <a href="https://twitter.com" className="text-white" target="_blank" rel="noopener noreferrer">
+                            <FaTwitter size={30} />
+                        </a>
+                        <a href="https://www.linkedin.com/in/shubham-maurya-9932a3268/" className="text-white" target="_blank" rel="noopener noreferrer">
+                            <FaLinkedinIn size={30} />
+                        </a>
                     </div>
                 </div>
 
@@ -49,7 +65,7 @@ export default function Footer() {
 
                 {/* Footer Bottom */}
                 <div className="text-center">
-                    <p className="mb-0">
+                    <p className='mb-0'>
                         © {new Date().getFullYear()} Sarvavyapi - The Real Estate. All Rights Reserved.
                     </p>
                 </div>

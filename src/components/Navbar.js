@@ -10,7 +10,11 @@ function Navbar() {
   useEffect(() => {
     const adminToken = localStorage.getItem('adminToken');
     setIsAdmin(!!adminToken);
+      setIsMenuOpen(false);
   }, []);
+  const toggleNavbar = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   // Handle user logout 
   const handleLogOut = () => {
@@ -32,14 +36,13 @@ function Navbar() {
           <img src="/images/Real Estate Logo.png" alt="Real Estate Logo" />
         </Link>
 
-        {/* Toggler Button for Mobile Screens */}
-        <button
-          className="navbar-toggler"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle navigation"
-        >
-          ☰
-        </button>
+        <button className="navbar-toggler" onClick={toggleNavbar} aria-label="Toggle navigation" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
+            <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
 
         {/* Menu Links */}
         <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
