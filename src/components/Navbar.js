@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Navbar.css'; 
+import './Navbar.css';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +10,7 @@ function Navbar() {
   useEffect(() => {
     const adminToken = localStorage.getItem('adminToken');
     setIsAdmin(!!adminToken);
-      setIsMenuOpen(false);
+    setIsMenuOpen(false);
   }, []);
   const toggleNavbar = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,7 +19,7 @@ function Navbar() {
   // Handle user logout 
   const handleLogOut = () => {
     localStorage.removeItem('token');
-    navigate('/'); 
+    navigate('/');
     window.location.reload();
   };
 
@@ -32,17 +32,20 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         {/* Left Side: Logo */}
-        <Link className="navbar-logo" to="/">
-          <img src="/images/Real Estate Logo.png" alt="Real Estate Logo" />
-        </Link>
+        <div className="navbar-brand">
+          <Link className="navbar-logo" to="/">
+            <img src="/images/Real Estate Logo.png" alt="Real Estate Logo" />
+          </Link>
+          <h3 className="navbar-title">Sarvavyapi</h3>
+        </div>
 
         <button className="navbar-toggler" onClick={toggleNavbar} aria-label="Toggle navigation" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
-            <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </button>
+          <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
 
         {/* Menu Links */}
         <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
