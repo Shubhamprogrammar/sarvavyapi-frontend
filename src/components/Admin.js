@@ -3,7 +3,7 @@ import axios from "axios";
 import emailjs from "@emailjs/browser";
 
 export default function Admin() {
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("adminToken") ? true : false);
+    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("adminToken") ? true : false);
     const [loginCredentials, setLoginCredentials] = useState({ username: "", passkey: "" });
     const [pendingProperties, setPendingProperties] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -119,7 +119,7 @@ export default function Admin() {
                 });
 
             if (response.data.success) {
-                localStorage.setItem("adminToken", response.data.token);
+                sessionStorage.setItem("adminToken", response.data.token);
                 setIsLoggedIn(true);
                 window.location.reload();
                 setErrorMessage(null);
@@ -132,14 +132,14 @@ export default function Admin() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("adminToken");
+        sessionStorage.removeItem("adminToken");
         window.location.reload();
         setIsLoggedIn(false);
     };
 
     const fetchAdmins = async () => {
         try {
-            const token = localStorage.getItem("adminToken");
+            const token = sessionStorage.getItem("adminToken");
             console.log("Token being sent:", token);
             if (!token) {
                 setErrorMessage("Unauthorized. Please log in again.");
@@ -194,7 +194,7 @@ export default function Admin() {
         if (!window.confirm(`Are you sure you want to remove admin ${username}?`)) return;
 
         try {
-            const token = localStorage.getItem("adminToken");
+            const token = sessionStorage.getItem("adminToken");
             await axios.delete(`http://localhost:5000/api/admin/remove/${adminId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });

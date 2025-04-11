@@ -22,7 +22,7 @@ function Profile() {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
-            'auth-token': localStorage.getItem('token'),
+            'auth-token': sessionStorage.getItem('token'),
           },
         });
 
@@ -74,7 +74,7 @@ function Profile() {
       const response = await fetch("http://localhost:5000/api/auth/update-profile", {
         method: "PUT",
         headers: {
-          "auth-token": localStorage.getItem("token"),
+          "auth-token": sessionStorage.getItem("token"),
         },
         body: formDataToSend,
       });

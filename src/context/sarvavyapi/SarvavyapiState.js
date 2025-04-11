@@ -13,7 +13,7 @@ export default function SarvavyapiState(props) {
             const response = await fetch(`${host}/api/property/addproperty`, {
                 method: "POST",
                 headers: {
-                    'auth-token': localStorage.getItem('token'),
+                    'auth-token': sessionStorage.getItem('token'),
                 },
                 body: propertyData,
             });
@@ -81,7 +81,7 @@ export default function SarvavyapiState(props) {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': localStorage.getItem('token'),
+                    'auth-token': sessionStorage.getItem('token'),
                 },
             });
             const json = await response.json();
@@ -99,7 +99,7 @@ export default function SarvavyapiState(props) {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': localStorage.getItem('token'),
+                    'auth-token': sessionStorage.getItem('token'),
                 },
                 body: JSON.stringify(updatedData),
             });
@@ -132,7 +132,7 @@ export default function SarvavyapiState(props) {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
-                        'auth-token': localStorage.getItem('token'),
+                        'auth-token': sessionStorage.getItem('token'),
                     },
                 });
                 const json = await response.json();

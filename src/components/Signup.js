@@ -84,8 +84,8 @@ const Signup = () => {
       const json = await response.json();
 
       if (json.success) {
-        localStorage.setItem("token", json.authToken);
-        localStorage.setItem("userId", json.userId);
+        sessionStorage.setItem("token", json.authToken);
+        sessionStorage.setItem("userId", json.userId);
         navigate("/");
         window.location.reload();
       } else {

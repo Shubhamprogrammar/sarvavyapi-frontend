@@ -66,7 +66,7 @@ export default function Footer() {
                 {/* Footer Bottom */}
                 <div className="text-center">
                     <p className='mb-0'>
-                        © {new Date().getFullYear()} Sarvavyapi - The Real Estate. All Rights Reserved.
+                        © 2025 Sarvavyapi - The Real Estate. All Rights Reserved.
                     </p>
                 </div>
             </div>

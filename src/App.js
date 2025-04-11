@@ -29,7 +29,7 @@ function App() {
         <div>
           <Router>
             <Navbar />
-            {((localStorage.getItem('token') && !localStorage.getItem('adminToken'))) ?
+            {((sessionStorage.getItem('token') && !sessionStorage.getItem('adminToken'))) ?
              <LoggedUser /> : (<h2 style={{ textAlign: "center", margin: "5px" }}>Welcome to Sarvavyapi - The Real Estate</h2>)
             }
             <Routes>

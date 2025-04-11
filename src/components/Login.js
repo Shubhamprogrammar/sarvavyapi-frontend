@@ -40,8 +40,8 @@ const LoginForm = () => {
       const json = await response.json();
 
       if (json.success) {
-        localStorage.setItem('token', json.authToken);
-        localStorage.setItem('userId', json.userId);
+        sessionStorage.setItem('token', json.authToken);
+        sessionStorage.setItem('userId', json.userId);
         navigate('/');
         window.location.reload();
         setSuccess(true);
@@ -72,8 +72,8 @@ const LoginForm = () => {
         console.log("Backend Response:", json);
 
         if (json.success) {
-          localStorage.setItem('token', json.authToken);
-          localStorage.setItem('userId', json.userId);
+          sessionStorage.setItem('token', json.authToken);
+          sessionStorage.setItem('userId', json.userId);
           window.location.reload();
           navigate('/');
         } else {

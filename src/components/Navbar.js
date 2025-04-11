@@ -8,7 +8,7 @@ function Navbar() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const adminToken = localStorage.getItem('adminToken');
+    const adminToken = sessionStorage.getItem('adminToken');
     setIsAdmin(!!adminToken);
     setIsMenuOpen(false);
   }, []);
@@ -18,7 +18,7 @@ function Navbar() {
 
   // Handle user logout 
   const handleLogOut = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     navigate('/');
     window.location.reload();
   };
@@ -73,7 +73,7 @@ function Navbar() {
           {/* Hide buttons when adminToken is present */}
           {!isAdmin && (
             <div className="navbar-buttons">
-              {!localStorage.getItem('token') ? (
+              {!sessionStorage.getItem('token') ? (
                 <div className="auth-buttons">
                   <Link className="nav-link" to="/login" onClick={handleNavLinkClick}>
                     <button className="btn" type="button">Login</button>
