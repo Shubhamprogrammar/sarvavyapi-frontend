@@ -22,6 +22,7 @@ export default function AddProperties() {
     condition: ''
   });
   const [successMessage, setSuccessMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios.get(`${host}/api/property/cities`)
@@ -65,6 +66,7 @@ export default function AddProperties() {
     });
 
     try {
+      setLoading(true);
       const success = await addProperty(data);
       if (success) {
         setSuccessMessage('Your property has been added successfully! It will be reviewed by our admin team within 24 hours.');
@@ -77,6 +79,9 @@ export default function AddProperties() {
     } catch (error) {
       console.error('Error submitting form:', error);
       setSuccessMessage('An error occurred. Please try again.');
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -142,8 +147,8 @@ export default function AddProperties() {
             />
           </div>
           <div className="d-grid gap-2">
-            <button type="submit" className="btn btn-dark" style={{ backgroundColor: "#1A237E", fontSize: "1.1rem", padding: "10px" }}>
-              Submit Property
+            <button type="submit" className="btn btn-dark" disabled={loading} style={{ backgroundColor: "#1A237E", fontSize: "1.1rem", padding: "10px" }}>
+              {loading ? "Submitting..." : "Submit Property"}
             </button>
             {successMessage && <div className="mt-4 text-center text-success">{successMessage}</div>}
           </div>

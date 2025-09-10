@@ -52,7 +52,7 @@ export default function Footer() {
                         <a href="https://facebook.com" className="text-white" target="_blank" rel="noopener noreferrer">
                             <FaFacebookF size={30} />
                         </a>
-                        <a href="https://twitter.com" className="text-white" target="_blank" rel="noopener noreferrer">
+                        <a href="https://x.com" className="text-white" target="_blank" rel="noopener noreferrer">
                             <FaTwitter size={30} />
                         </a>
                         <a href="https://www.linkedin.com/in/shubham-maurya-9932a3268/" className="text-white" target="_blank" rel="noopener noreferrer">
