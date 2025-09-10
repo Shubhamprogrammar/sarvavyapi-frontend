@@ -54,7 +54,6 @@ export default function SarvavyapiState(props) {
 
             const json = await response.json();
             setResidentialProperties(json);
-            console.log(json);
         } catch (error) {
             console.error("Error while loading residential properties:", error);
         }
@@ -85,7 +84,6 @@ export default function SarvavyapiState(props) {
                 },
             });
             const json = await response.json();
-            console.log(json);
             setProperties(json);
         }
         catch (error) {
@@ -109,8 +107,7 @@ export default function SarvavyapiState(props) {
                 return false;
             }
     
-            const result = await response.json();
-            console.log(result);
+            await response.json();
             setProperties((prevProperties) =>
                 prevProperties.map((property) =>
                     property._id === id ? { ...property, ...updatedData } : property
@@ -129,14 +126,13 @@ export default function SarvavyapiState(props) {
         if (confirmation) {
             try {
                 const response = await fetch(`${host}/api/property/deleteproperty/${id}`, {
-                    method: 'DELETE',
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': sessionStorage.getItem('token'),
                     },
                 });
-                const json = await response.json();
-                console.log(json);
+                await response.json();
                 setProperties(properties.filter(property => property._id !== id));
             } catch (error) {
                 console.error('Failed to delete heart:', error);
@@ -167,8 +163,7 @@ export default function SarvavyapiState(props) {
                 return false;
             }
     
-            const savedAppointment = await response.json();
-            console.log("Appointment Added:", savedAppointment);
+            await response.json();
     
             return true;
         } catch (error) {
@@ -186,8 +181,7 @@ export default function SarvavyapiState(props) {
             },
             body: JSON.stringify({ name, email, feedback }),
         })
-        const savedFeedback = await response.json();
-        console.log(savedFeedback);
+        await response.json();
     }
 
     const fetchUserDetails = useCallback(async (userId) => {
