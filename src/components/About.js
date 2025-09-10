@@ -14,7 +14,7 @@ const About = () => {
       <div className="row align-items-center">
         <div className="col-lg-6 text-center mb-4 mb-lg-0">
           <img
-            src="/images/real Estate.png"
+            src="/images/Real Estate.png"
             alt="Sarvavyapi Real Estate"
             className="img-fluid rounded shadow w-100"
             style={{ maxWidth: "90%" }}
