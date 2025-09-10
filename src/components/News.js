@@ -68,7 +68,7 @@ const News = ({ country = 'us', pageSize = 9, category = 'business', apiKey }) =
       >
         <div className="container">
           <div className="row">
-            {articles?.map((element) => (
+            {articles ? articles?.map((element) => (
               <div className="col-md-4" key={element.url}>
                 <NewsItem
                   title={element.title ? element.title.slice(0, 45) + '...' : ''}
@@ -80,7 +80,8 @@ const News = ({ country = 'us', pageSize = 9, category = 'business', apiKey }) =
                   source={element.source.name}
                 />
               </div>
-            ))}
+              
+            )) : <div className='alert alert-dark text-center'>No articles available</div>}
           </div>
         </div>
       </InfiniteScroll>
