@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import emailjs from "@emailjs/browser";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -19,7 +19,7 @@ export default function Appointment() {
 
   useEffect(() => {
     emailjs.init("JTSqY7vk-kuMiu1OH");
-    
+
     // Fetch property details if propertyId is available
     const fetchPropertyDetails = async () => {
       if (propertyId) {
@@ -30,7 +30,7 @@ export default function Appointment() {
             console.log("Property data fetched:", data);
             if (data.length > 0) {
               setPropertyDetails(data[0]);
-              
+
               // If the property has a user ID, fetch user details
               if (data[0].user) {
                 fetchUserDetails(data[0].user);
@@ -42,7 +42,7 @@ export default function Appointment() {
         }
       }
     };
-    
+
     fetchPropertyDetails();
   }, [propertyId, fetchUserDetails]);
 
@@ -103,17 +103,17 @@ export default function Appointment() {
           contact: contactRef.current.value,
           date: formData.date ? formData.date.toISOString().split('T')[0] : '',
           property_name: propertyDetails.name,
-          address:userContacts[propertyDetails.user].address,
+          address: userContacts[propertyDetails.user].address,
         });
         await emailjs.send(serviceIdSeller, templateIdSeller, {
           name: userContacts[propertyDetails.user].name,
           recipient: userContacts[propertyDetails.user].email,
-          buyer:nameRef.current.value,
+          buyer: nameRef.current.value,
           email: emailRef.current.value,
           contact: contactRef.current.value,
           date: formData.date ? formData.date.toISOString().split('T')[0] : '',
           property_name: propertyDetails.name,
-          address:userContacts[propertyDetails.user].address,
+          address: userContacts[propertyDetails.user].address,
         });
 
         alert("Appointment details have been sent to your email.");
@@ -121,10 +121,10 @@ export default function Appointment() {
         alert("Failed to book appointment.");
       }
 
-      setFormData({ 
-        name: "", 
-        email: "", 
-        contact: "", 
+      setFormData({
+        name: "",
+        email: "",
+        contact: "",
         date: null,
         propertyId: propertyId || "",
       });
@@ -136,17 +136,17 @@ export default function Appointment() {
   };
 
   return (
-    <div className="container mt-5 w-50 mx-auto shadow-lg p-4 rounded">
+    <div className="container mt-5 shadow-lg p-4 rounded">
       <div className="row">
         <h2 className="text-center mb-4">Appointment Form</h2>
-        
+
         {/* Property Details Section */}
         {propertyDetails && (
           <div className="mb-3 text-center">
-          <h5>  {propertyDetails.name} ({propertyDetails.address}, {propertyDetails.city})</h5>
+            <h5>  {propertyDetails.name} ({propertyDetails.address}, {propertyDetails.city})</h5>
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Name</label>
@@ -200,7 +200,7 @@ export default function Appointment() {
               <span className="input-group-text">
                 <FaCalendarAlt />
               </span>
-              <DatePicker 
+              <DatePicker
                 selected={formData.date}
                 onChange={handleDateChange}
                 minDate={new Date()} // Prevent past dates
@@ -211,15 +211,16 @@ export default function Appointment() {
               />
             </div>
           </div>
-
-          <button 
-            type="submit" 
-            className="btn w-100" 
-            disabled={loading} 
-            style={{ backgroundColor: "#1A237E", color: "white" }} 
-          >
-            {loading ? "Submitting..." : "Submit"}
-          </button>
+          <div className="d-flex justify-content-center">
+            <button
+              type="submit"
+              className="btn w-50"
+              disabled={loading}
+              style={{ backgroundColor: "#1A237E", color: "white" }}
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </button>
+          </div>
         </form>
       </div>
     </div>
