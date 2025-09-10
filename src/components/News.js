@@ -68,7 +68,7 @@ const News = ({ country = 'us', pageSize = 9, category = 'business', apiKey }) =
       >
         <div className="container">
           <div className="row">
-            {articles ? articles?.map((element) => (
+            {articles.length>0 ? articles?.map((element) => (
               <div className="col-md-4" key={element.url}>
                 <NewsItem
                   title={element.title ? element.title.slice(0, 45) + '...' : ''}
