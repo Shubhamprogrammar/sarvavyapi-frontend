@@ -49,9 +49,9 @@ export default function Search() {
                                 {/* Two-column Layout */}
                                 <div className="d-flex justify-content-between">
                                     <div>
-                                        <p className="card-text mb-1">Size: {property.size} sq.ft.</p>
+                                        <p className="card-text mb-2">Size: {property.size} sq.ft.</p>
 
-                                        <p className="card-text mb-1">{property.address}, {property.city}</p>
+                                        <p className="card-text mb-2">{property.address}, {property.city}</p>
                                     </div>
                                     <div className="text-end">
                                         {userContacts[property.user] && (
