@@ -7,7 +7,7 @@ const Signup = () => {
     name: "",
     email: "",
     contact: "",
-    address: "",
+    address: "", 
     password: "",
     cpassword: "",
   });
@@ -15,6 +15,7 @@ const Signup = () => {
   const host = process.env.REACT_APP_BACKEND_URL;
   const [previewImage, setPreviewImage] = useState(null);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -76,6 +77,7 @@ const Signup = () => {
     }
 
     try {
+      setLoading(true);
       const response = await fetch(`${host}/api/auth/signup`, {
         method: "POST",
         body: formDataToSend,
@@ -94,6 +96,9 @@ const Signup = () => {
     } catch (error) {
       console.error("Signup error:", error);
       alert("An error occurred. Please try again.");
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -209,9 +214,10 @@ const Signup = () => {
         <button
           type="submit"
           className="btn w-100"
+          disabled={loading}
           style={{ backgroundColor: "#1A237E", color: "white" }}
         >
-          Submit
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>
