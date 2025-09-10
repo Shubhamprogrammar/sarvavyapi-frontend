@@ -40,13 +40,9 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center mt-5 w-50 mx-auto shadow-lg">
+    <div className="container d-flex justify-content-center mt-5 mx-auto" style={{maxWidth:"400px"}}>
       <div className="card shadow-lg p-4 w-50">
         <h2 className="text-center mb-4">Change Password</h2>
-
-        {/* Success & Error Messages */}
-        {message && <div className="alert alert-success">{message}</div>}
-        {error && <div className="alert alert-danger">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -105,6 +101,9 @@ const ForgetPassword = () => {
             Update Password
           </button>
         </form>
+        {/* Success & Error Messages */}
+        {message && <div className="alert alert-success">{message}</div>}
+        {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
   );

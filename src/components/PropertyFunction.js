@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function LoggedUser() {
   return (
@@ -9,17 +9,32 @@ export default function LoggedUser() {
           {/* Menu Links */}
           <ul className="navbar-links">
             <li>
-              <Link to="/add">Add Properties</Link>
+              <NavLink 
+                to="/add" 
+                className={({ isActive }) => isActive ? "active-link" : ""}
+              >
+                Add Properties
+              </NavLink>
             </li>
             <li>
-              <Link to="/view">View Properties</Link>
+              <NavLink 
+                to="/view" 
+                className={({ isActive }) => isActive ? "active-link" : ""}
+              >
+                View Properties
+              </NavLink>
             </li>
             <li>
-              <Link to="/profile">Profile</Link>
+              <NavLink 
+                to="/profile" 
+                className={({ isActive }) => isActive ? "active-link" : ""}
+              >
+                Profile
+              </NavLink>
             </li>
           </ul>
         </div>
       </nav>
     </div>
-  )
+  );
 }
