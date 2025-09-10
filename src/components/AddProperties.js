@@ -67,7 +67,7 @@ export default function AddProperties() {
     try {
       const success = await addProperty(data);
       if (success) {
-        setSuccessMessage('Property Added Successfully!');
+        setSuccessMessage('Your property has been added successfully! It will be reviewed by our admin team within 24 hours.');
         setFormData({ image: null, name: '', type: 'sale', categories: 'resident', size: '',price:'', address: '', city: '', condition: '' });
         setSelectedCity(null);
         document.getElementById('image').value = '';
