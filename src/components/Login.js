@@ -94,11 +94,12 @@ const LoginForm = () => {
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <div
-        className="container mt-5 w-50 mx-auto shadow-lg"
+        className="container mt-5 mx-auto shadow-lg"
         style={{
           backgroundColor: "white",
           padding: "20px",
           borderRadius: "10px",
+          maxWidth: "350px",
         }}
       >
         <h2 className="text-center">Login Form</h2>
