@@ -4,7 +4,6 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import LoggedUser from './components/PropertyFunction';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ResidentialG from './components/ResidentialG';
 import CommercialG from './components/CommercialG';
@@ -29,9 +28,6 @@ function App() {
         <div>
           <Router>
             <Navbar />
-            {((sessionStorage.getItem('token') && !sessionStorage.getItem('adminToken'))) ?
-             <LoggedUser /> : (<h2 style={{ textAlign: "center", margin: "5px" }}>Welcome to Sarvavyapi - The Real Estate</h2>)
-            }
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route exact path="/signup" element={<Signup />} />

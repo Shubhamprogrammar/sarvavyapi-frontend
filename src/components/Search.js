@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export default function Search() {
     const location = useLocation();
+    const host = process.env.REACT_APP_BACKEND_URL;
     const [properties, setProperties] = useState([]);
     const { userContacts } = useContext(SarvavyapiContext);
 
@@ -16,7 +17,7 @@ export default function Search() {
 
     useEffect(() => {
         const formattedCity = city.replace(/%20/g, "+");
-        axios.get(`http://localhost:5000/api/property/getallpropertyt?city=${formattedCity}&categories=${categories}&type=${type}`)
+        axios.get(`${host}/api/property/getallpropertyt?city=${formattedCity}&categories=${categories}&type=${type}`)
             .then(response => {
                 setProperties(response.data);
             })

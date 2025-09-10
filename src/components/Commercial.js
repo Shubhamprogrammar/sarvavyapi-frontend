@@ -33,7 +33,7 @@ export default function Commercial() {
                         1200: { slidesPerView: 4, spaceBetween: 20 },
                     }}
                 >
-                    {commercialProperties.map(({ _id, image, name, size, address, condition, user }) => (
+                    {commercialProperties.map(({ _id, image, name, size, address, condition, user, price }) => (
                         <SwiperSlide key={_id} style={{ display: "flex", justifyContent: "center" }}>
                             <div className="card mx-auto d-flex flex-column h-100" style={{ maxWidth: "18rem", minHeight: "100%" }}>
                                 <img
@@ -44,14 +44,14 @@ export default function Commercial() {
                                 />
                                 <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">{name}</h5>
+                                    <p className="card-text mb-1">{condition}</p>
                                     <p className="card-text mb-1">Size: {size} sq.ft.</p>
-                                    <p className="card-text mb-1">{address}</p>
-                                    <p className="card-text mb-2">{condition}</p>
+                                    <p className="card-text mb-1">{price}Rs. per sq.ft.</p>
 
                                     {userContacts?.[user] && (
-                                        <p className="card-text mb-2">Mobile: +91 {userContacts[user]?.contact}</p>
+                                        <p className="card-text mb-1">Mobile: +91 {userContacts[user]?.contact}</p>
                                     )}
-
+                                    <p className="card-text mb-1">{address}</p>
                                     <div className="mt-auto text-center">
                                         <Link to={`/appointment/${_id}`} className="btn btn-primary">Book Appointment</Link>
                                     </div>

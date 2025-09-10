@@ -7,7 +7,7 @@ const ForgetPassword = () => {
     newPassword: "",
     confirmPassword: "",
   });
-
+  const host = process.env.REACT_APP_BACKEND_URL;
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -25,7 +25,7 @@ const ForgetPassword = () => {
       return;
     }
 
-    const res = await fetch("http://localhost:5000/api/auth/change-password", {
+    const res = await fetch(`${host}/api/auth/change-password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

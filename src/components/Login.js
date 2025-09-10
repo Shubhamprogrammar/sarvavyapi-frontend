@@ -4,6 +4,7 @@ import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from "react-icons/fc";
 
 const LoginForm = () => {
+  const host = process.env.REACT_APP_BACKEND_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -31,7 +32,7 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${host}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -62,7 +63,7 @@ const LoginForm = () => {
       console.log("Google Token Response:", tokenResponse);
 
       try {
-        const response = await fetch('http://localhost:5000/api/auth/google-login', {
+        const response = await fetch(`${host}/api/auth/google-login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token: tokenResponse.code }), // Use `tokenResponse.code`
@@ -107,7 +108,7 @@ const LoginForm = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-3">
-            <label htmlFor="email" className="form-label">Email address</label>
+            <label htmlFor="email" className="form-label">Email address<span style={{color:"red"}}>*</span></label>
             <input
               type="email"
               className="form-control"
@@ -119,7 +120,7 @@ const LoginForm = () => {
           </div>
 
           <div className="form-group mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
+            <label htmlFor="password" className="form-label">Password<span style={{color:"red"}}>*</span></label>
             <input
               type="password"
               className="form-control"

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 
 function Profile() {
+  const host = process.env.REACT_APP_BACKEND_URL;
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const ref = useRef(null);
@@ -18,7 +19,7 @@ function Profile() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/profile', {
+        const response = await fetch(`${host}/api/auth/profile`, {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -33,9 +34,9 @@ function Profile() {
           email: data.email,
           contact: data.contact,
           address: data.address,
-          image: data.photo ? `http://localhost:5000/${data.photo}` : '',
+          image: data.photo ? `${data.photo}` : '',
         });
-        setPreviewImage(data.photo ? `http://localhost:5000/${data.photo}` : null);
+        setPreviewImage(data.photo ? `${data.photo}` : null);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -71,7 +72,7 @@ function Profile() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/update-profile", {
+      const response = await fetch(`${host}/api/auth/update-profile`, {
         method: "PUT",
         headers: {
           "auth-token": sessionStorage.getItem("token"),
@@ -82,7 +83,7 @@ function Profile() {
       if (response.ok) {
         const updatedUser = await response.json(); // Get updated user data
         setUser(updatedUser); // Update state with new data
-        setPreviewImage(`http://localhost:5000${updatedUser.photo}?t=${new Date().getTime()}`); // Force reload image
+        setPreviewImage(`${updatedUser.photo}?t=${new Date().getTime()}`); // Force reload image
         alert("Profile updated successfully");
         refClose.current.click();
       } else {
@@ -119,7 +120,7 @@ function Profile() {
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Email</label>
-                  <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} required />
+                  <input type="email" className="form-control" id="email" value={formData.email}  disabled />
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Contact</label>
@@ -149,7 +150,7 @@ function Profile() {
                 className="far fa-edit edit-icon"
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  setPreviewImage(user?.photo ? `http://localhost:5000${user.photo}?t=${new Date().getTime()}` : null);
+                  setPreviewImage(user?.photo ? `${user.photo}?t=${new Date().getTime()}` : null);
                   ref.current.click();
                 }}
               ></i>
@@ -157,7 +158,7 @@ function Profile() {
 
             <div className="profile-header">
               <img
-                src={user?.photo ? `http://localhost:5000${user.photo}?t=${new Date().getTime()}` : 'https://via.placeholder.com/150'}
+                src={user?.photo ? `${user.photo}?t=${new Date().getTime()}` : 'https://via.placeholder.com/150'}
                 alt="Profile"
                 className="user-profile-image"
               />

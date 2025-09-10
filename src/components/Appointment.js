@@ -9,7 +9,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 export default function Appointment() {
   // Get URL parameters
   const { propertyId } = useParams();
-  
+  const host = process.env.REACT_APP_BACKEND_URL;
   const emailRef = useRef();
   const nameRef = useRef();
   const contactRef = useRef();
@@ -24,7 +24,7 @@ export default function Appointment() {
     const fetchPropertyDetails = async () => {
       if (propertyId) {
         try {
-          const response = await fetch(`http://localhost:5000/api/property/getallpropertyappt?propertyId=${propertyId}`);
+          const response = await fetch(`${host}/api/property/getallpropertyappt?propertyId=${propertyId}`);
           if (response.ok) {
             const data = await response.json();
             console.log("Property data fetched:", data);

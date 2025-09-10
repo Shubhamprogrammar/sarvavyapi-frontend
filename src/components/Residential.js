@@ -43,12 +43,13 @@ export default function Residential() {
                                 />
                                 <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">{card.name}</h5>
+                                    <p className="card-text mb-1">{card.condition}</p>
                                     <p className="card-text mb-1">Size: {card.size}sq.ft.</p>
-                                    <p className="card-text mb-1">{card.address}</p>
-                                    <p className="card-text mb-2">{card.condition}</p>
+                                    <p className="card-text mb-1">{card.price}Rs. per sq.ft</p>
                                     {userContacts[card.user] && (
-                                        <p className="card-text mb-2">Mobile: +91 {userContacts[card.user]?.contact}</p>
+                                        <p className="card-text mb-1">Mobile: +91 {userContacts[card.user]?.contact}</p>
                                     )}
+                                    <p className="card-text mb-1">{card.address}</p>
                                     <div className="mt-auto text-center">
                                         <Link to={`/appointment/${card._id}`} className="btn btn-primary">Book Appointment</Link>
                                     </div>

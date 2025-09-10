@@ -5,6 +5,7 @@ import { FaMapMarkerAlt, FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 export default function Fields() {
+    const host = process.env.REACT_APP_BACKEND_URL; // Backend URL from environment variables
     const [cities, setCities] = useState([]);  
     const [selectedCity, setSelectedCity] = useState(null);  
     const [propertyType, setPropertyType] = useState("resident");
@@ -13,7 +14,7 @@ export default function Fields() {
     const navigate = useNavigate(); // Used for navigation
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/property/cities") 
+        axios.get(`${host}/api/property/cities`) 
             .then(response => {
                 const cityOptions = response.data.map(city => ({
                     value: city.name,

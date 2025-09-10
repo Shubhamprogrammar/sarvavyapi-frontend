@@ -3,6 +3,7 @@ import axios from "axios";
 import emailjs from "@emailjs/browser";
 
 export default function Admin() {
+    const host = process.env.REACT_APP_BACKEND_URL;
     const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("adminToken") ? true : false);
     const [loginCredentials, setLoginCredentials] = useState({ username: "", passkey: "" });
     const [pendingProperties, setPendingProperties] = useState([]);
@@ -28,7 +29,7 @@ export default function Admin() {
     // Fetch all pending properties
     const fetchPendingProperties = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/property/pending");
+            const response = await axios.get(`${host}/api/property/pending`);
             setPendingProperties(response.data);
         } catch (error) {
             console.error("Error fetching pending properties:", error);
@@ -39,7 +40,7 @@ export default function Admin() {
     // Handle property approval
     const handleApprove = async (propertyId) => {
         try {
-            const propertyResponse = await axios.get(`http://localhost:5000/api/property/getallpropertyapp?propertyId=${propertyId}`);
+            const propertyResponse = await axios.get(`${host}/api/property/getallpropertyapp?propertyId=${propertyId}`);
             const property = propertyResponse.data[0];
 
             if (!property.user) {
@@ -48,7 +49,7 @@ export default function Admin() {
                 return;
             }
 
-            const userResponse = await axios.get(`http://localhost:5000/api/auth/profileq?user=${property.user}`);
+            const userResponse = await axios.get(`${host}/api/auth/profileq?user=${property.user}`);
             const user = userResponse.data;
 
             if (!user.email || !user.name) {
@@ -62,8 +63,13 @@ export default function Admin() {
                 recipient: user.email,
                 property_name: property.name,
             });
-
-            const response = await axios.put(`http://localhost:5000/api/property/approveproperty/${propertyId}`);
+            const token = sessionStorage.getItem("adminToken");
+            const response = await axios.put(`${host}/api/property/approveproperty/${propertyId}`, {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
             if (response.status === 200) {
                 setPendingProperties((prev) => prev.filter(property => property._id !== propertyId));
                 setErrorMessage(null);
@@ -79,7 +85,7 @@ export default function Admin() {
     // Handle cancel action
     const handleCancel = async (propertyId) => {
         try {
-            const propertyResponse = await axios.get(`http://localhost:5000/api/property/getallpropertyapp?propertyId=${propertyId}`);
+            const propertyResponse = await axios.get(`${host}/api/property/getallpropertyapp?propertyId=${propertyId}`);
             const property = propertyResponse.data[0];
 
             if (!property.user) {
@@ -88,7 +94,7 @@ export default function Admin() {
                 return;
             }
 
-            const userResponse = await axios.get(`http://localhost:5000/api/auth/profileq?user=${property.user}`);
+            const userResponse = await axios.get(`${host}/api/auth/profileq?user=${property.user}`);
             const user = userResponse.data;
 
             if (!user.email || !user.name) {
@@ -111,7 +117,7 @@ export default function Admin() {
     };
     const handleLogin = async () => {
         try {
-            const response = await axios.post("http://localhost:5000/api/admin/admin-login", loginCredentials,
+            const response = await axios.post(`${host}/api/admin/admin-login`, loginCredentials,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -145,7 +151,7 @@ export default function Admin() {
                 setErrorMessage("Unauthorized. Please log in again.");
                 return;
             }
-            const response = await axios.get("http://localhost:5000/api/admin/dashboard", {
+            const response = await axios.get(`${host}/api/admin/dashboard`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -166,7 +172,7 @@ export default function Admin() {
         try {
             console.log("Sending request to register admin:", newAdmin); // Debug log
 
-            const response = await axios.post("http://localhost:5000/api/admin/register", {
+            const response = await axios.post(`${host}/api/admin/register`, {
                 username: newAdmin.username,
                 passkey: newAdmin.passkey,
             });
@@ -195,7 +201,7 @@ export default function Admin() {
 
         try {
             const token = sessionStorage.getItem("adminToken");
-            await axios.delete(`http://localhost:5000/api/admin/remove/${adminId}`, {
+            await axios.delete(`${host}/api/admin/remove/${adminId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -213,7 +219,7 @@ export default function Admin() {
                 <div className="card p-4 shadow-lg" style={{ marginTop: "-300px", maxWidth: "700px" }}>
                     <h3 className="text-center mb-3">Admin Login</h3>
                     {errorMessage && <p className="text-danger">{errorMessage}</p>}
-                    <label className="form-label fw-semibold">Username</label>
+                    <label className="form-label fw-semibold">Username<span style={{ color: "red" }}>*</span></label>
                     <input
                         type="text"
                         placeholder="Username"
@@ -221,7 +227,7 @@ export default function Admin() {
                         value={loginCredentials.username}
                         onChange={(e) => setLoginCredentials({ ...loginCredentials, username: e.target.value })}
                     />
-                    <label className="form-label fw-semibold">Passkey</label>
+                    <label className="form-label fw-semibold">Passkey<span style={{ color: "red" }}>*</span></label>
                     <input
                         type="password"
                         placeholder="Passkey"
@@ -287,7 +293,7 @@ export default function Admin() {
                             <div className="card shadow-lg p-4" style={{ width: "400px", borderRadius: "12px" }}>
                                 <h3 className="mb-4 text-center">Add New Admin</h3>
                                 <div className="mb-3">
-                                    <label className="form-label fw-semibold">Username</label>
+                                    <label className="form-label fw-semibold">Username<span style={{ color: "red" }}>*</span></label>
                                     <input
                                         type="text"
                                         placeholder="Enter username"
@@ -297,7 +303,7 @@ export default function Admin() {
                                         onChange={(e) => setNewAdmin({ ...newAdmin, username: e.target.value })}
                                     />
 
-                                    <label className="form-label fw-semibold">Passkey</label>
+                                    <label className="form-label fw-semibold">Passkey<span style={{ color: "red" }}>*</span></label>
                                     <input
                                         type="password"
                                         placeholder="Enter passkey"

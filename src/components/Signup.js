@@ -12,12 +12,12 @@ const Signup = () => {
     cpassword: "",
   });
   const navigate = useNavigate();
+  const host = process.env.REACT_APP_BACKEND_URL;
   const [previewImage, setPreviewImage] = useState(null);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-
     if (name === "profileImage" && files && files[0]) {
       setFormData({ ...formData, [name]: files[0] });
       setPreviewImage(URL.createObjectURL(files[0]));
@@ -76,7 +76,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
+      const response = await fetch(`${host}/api/auth/signup`, {
         method: "POST",
         body: formDataToSend,
       });
@@ -141,7 +141,7 @@ const Signup = () => {
 
           <div style={{ flex: "1", marginLeft: "20px" }}>
             <label htmlFor="profileImage" className="form-label">
-              Upload Profile Image
+              Upload Profile Image<span style={{color:"red"}}>*</span>
             </label>
             <input
               type="file"
@@ -175,7 +175,7 @@ const Signup = () => {
         ].map(({ label, name, type }) => (
           <div key={name} className="mb-3">
             <label htmlFor={name} className="form-label">
-              {label}
+              {label}<span style={{color:"red"}}>*</span>
             </label>
             {type === "textarea" ? (
               <textarea

@@ -7,11 +7,11 @@ export default function ResidentialG() {
 
     useEffect(() => {
         getResidentialProperty("residential");
-    }, []); 
+    }, []);
 
     return (
         <div className="container py-3">
-            <h2 className="mb-4 text-center">Residential Properties</h2>
+            <h2 className="mb-4 text-center mt-2">Residential Properties</h2>
             {Array.isArray(residentialProperties) && residentialProperties.length === 0 ? (
                 <div className="alert alert-dark text-center">No Residential properties available</div>
             ) : (
@@ -27,12 +27,13 @@ export default function ResidentialG() {
                                 />
                                 <div className="card-body d-flex flex-column p-2" style={{ flex: "1 1 auto" }}>
                                     <h6 className="card-title mb-1">{card.name}</h6>
+                                    <p className="card-text mb-1">{card.condition}</p>
                                     <p className="card-text mb-1">Size: {card.size} sq.ft.</p>
-                                    <p className="card-text mb-1">{card.address}</p>
-                                    <p className="card-text">{card.condition}</p>
+                                    <p className="card-text mb-1">{card.price}Rs. per sq.ft.</p>
                                     {userContacts[card.user] && (
-                                        <p className="card-text">Mobile: +91 {userContacts[card.user]?.contact}</p>
+                                        <p className="card-text mb-0">Mobile: +91 {userContacts[card.user]?.contact}</p>
                                     )}
+                                    <p className="card-text mb-0">{card.address}</p>
                                     <div className="mt-auto">
                                         <Link to={`/appointment/${card._id}`} className="btn btn-sm btn-primary w-100">
                                             Book Appointment

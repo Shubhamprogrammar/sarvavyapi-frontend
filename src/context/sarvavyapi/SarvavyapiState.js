@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import SarvavyapiContext from './SarvavyapiContext';
 
 export default function SarvavyapiState(props) {
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_BACKEND_URL;
     const [residentialProperties, setResidentialProperties] = useState([]);
     const [commercialProperties, setCommercialProperties] = useState([]);
     const [properties, setProperties] = useState([]);
@@ -194,7 +194,7 @@ export default function SarvavyapiState(props) {
         if (!userId || userContacts[userId]) return; 
 
         try {
-            const response = await fetch(`http://localhost:5000/api/auth/profile/${userId}`);
+            const response = await fetch(`${host}/api/auth/profile/${userId}`);
             if (!response.ok) throw new Error("Failed to fetch user details");
 
             const userData = await response.json();

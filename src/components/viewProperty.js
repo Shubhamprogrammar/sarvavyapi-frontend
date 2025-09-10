@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import SarvavyapiContext from '../context/sarvavyapi/SarvavyapiContext';
+import LoggedUser from './PropertyFunction';
 
 export default function ViewProperty() {
     const { properties, viewProperties, updateProperty, deleteProperty } = useContext(SarvavyapiContext);
@@ -116,7 +117,10 @@ export default function ViewProperty() {
 
             {/* Property Cards */}
             <div className="container py-3">
-                <h2 className="mb-4 text-center">Your Properties</h2>
+                {((sessionStorage.getItem('token') && !sessionStorage.getItem('adminToken'))) ?
+                    <LoggedUser /> : (<h2>Welcome to Sarvavyapi - The Real Estate</h2>)
+                }
+                <h2 className="mb-4 text-center mt-2">Your Properties</h2>
                 {Array.isArray(properties) && properties.length === 0 ? (
                     <div className="alert alert-dark text-center">No properties to show</div>
                 ) : (
@@ -133,7 +137,7 @@ export default function ViewProperty() {
                                     <div className="d-flex justify-content-between align-items-center mb-3">
                                         <h5 className="card-title mb-0">{card.name}</h5>
                                         <div>
-                                        <i className="far fa-trash-alt mx-2" style={{ cursor: 'pointer'}} onClick={() => deleteProperty(card._id)}></i>
+                                            <i className="far fa-trash-alt mx-2" style={{ cursor: 'pointer' }} onClick={() => deleteProperty(card._id)}></i>
                                             <i
                                                 className="far fa-edit mx-2"
                                                 style={{ cursor: 'pointer' }}
