@@ -27,9 +27,9 @@ export default function SarvavyapiState(props) {
             const result = await response.json();
             const newProperty = result.savedProperty;
             setProperties((prev)=>[...prev, newProperty]);
-            if (newProperty.category === "resident") {
+            if (newProperty.categories === "resident") {
                 setResidentialProperties((prev) => [...prev, newProperty]);
-            } else if (newProperty.category === "commercial") {
+            } else if (newProperty.categories === "commercial") {
                 setCommercialProperties((prev) => [...prev, newProperty]);
             }
             return true;
